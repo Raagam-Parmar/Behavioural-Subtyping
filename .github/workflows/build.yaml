@@ -23,7 +23,7 @@ jobs:
       run: dotnet restore Assignment01.slnx
 
     - name: Build Solution
-      run: dotnet build Assignment01.sln --no-restore --configuration Release
+      run: dotnet build Assignment01.slnx --no-restore --configuration Release
 
     - name: Run Tests
-      run: dotnet test Assignment01.sln --no-build --configuration Release --verbosity normal
+      run: dotnet test Assignment01.slnx --no-build --configuration Release --verbosity normal
