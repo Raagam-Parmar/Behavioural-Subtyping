@@ -1,0 +1,42 @@
+name: Build and test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v6
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v6
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore Assignment01.slnx
+
+    - name: Build Solution
+      run: dotnet build Assignment01.slnx --no-restore --configuration Release
+
+    - name: Run Tests
+      run: dotnet test Assignment01.slnx --no-build --configuration Release --verbosity normal
+
+    - name: Test and Collect Coverage
+      run: dotnet test --configuration Release --collect:"XPlat Code Coverage"
+
+    - name: Generate Coverage Report
+      uses: danielpalme/ReportGenerator-GitHub-Action@5.5.11
+      with:
+        reports: '**/TestResults/**/coverage.cobertura.xml'
+        targetdir: 'coveragereport'
+        reporttypes: 'MarkdownSummaryGithub;Html'
+
+    - name: Publish Coverage to Job Summary
+      run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
