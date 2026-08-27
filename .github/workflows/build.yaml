@@ -27,3 +27,16 @@ jobs:
 
     - name: Run Tests
       run: dotnet test Assignment01.slnx --no-build --configuration Release --verbosity normal
+
+    - name: Test and Collect Coverage
+      run: dotnet test --configuration Release --collect:"XPlat Code Coverage"
+
+    - name: Generate Coverage Report
+      uses: danielpalme/ReportGenerator-GitHub-Action@5.3.0
+      with:
+        reports: '**/TestResults/**/coverage.cobertura.xml'
+        targetdir: 'coveragereport'
+        reporttypes: 'MarkdownSummaryGithub;Html'
+
+    - name: Publish Coverage to Job Summary
+      run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
