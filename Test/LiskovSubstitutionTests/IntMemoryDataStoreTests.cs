@@ -5,12 +5,12 @@ namespace Test.LiskovSubstitutionTests
     public class IntMemoryDataStoreTests
     {
         /// <summary>
-        /// Tests that the Read method returns the correct positive integer after saving a key-value pair in the MemoryDataStore.
+        /// Tests that the Read method returns the correct positive integer after saving a key-value pair in the IntMemoryDataStore.
         /// </summary>
         [Fact]
         public void ReadAfterSaveIsCorrectPositive()
         {
-            IDataStore store = new MemoryDataStore();
+            IDataStore store = new IntMemoryDataStore();
 
             store.Save("payment_19102025", "10000");
             string? value = store.Read("payment_19102025");
@@ -18,12 +18,12 @@ namespace Test.LiskovSubstitutionTests
         }
 
         /// <summary>
-        /// Tests that the Read method returns the correct negative integer after saving a key-value pair in the MemoryDataStore.
+        /// Tests that the Read method returns the correct negative integer after saving a key-value pair in the IntMemoryDataStore.
         /// </summary>
         [Fact]
         public void ReadAfterSaveIsCorrectNegative()
         {
-            IDataStore store = new MemoryDataStore();
+            IDataStore store = new IntMemoryDataStore();
 
             store.Save("payment_19102025", "-10000");
             string? value = store.Read("payment_19102025");
