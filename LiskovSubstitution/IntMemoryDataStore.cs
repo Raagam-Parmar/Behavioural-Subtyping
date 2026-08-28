@@ -29,5 +29,19 @@
             var sanitizedValue = Sanitize(value);
             base.Save(key, sanitizedValue);
         }
+
+        public override string Read(string key)
+        {
+            string? value = base.Read(key);
+
+            if (value == null)
+            {
+                return "";
+            }
+            else
+            {
+                return value;
+            }
+        }
     }
 }

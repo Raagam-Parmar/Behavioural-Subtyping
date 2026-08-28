@@ -31,15 +31,15 @@ namespace Test.LiskovSubstitutionTests
         }
 
         /// <summary>
-        /// Tests that the Read method returns null when attempting to read a key that has not been saved in the MemoryDataStore.
+        /// Tests that the Read method returns empty string when attempting to read a key that has not been saved in the IntMemoryDataStore.
         /// </summary>
         [Fact]
         public void ReadBeforeSaveIsNull()
         {
-            IDataStore store = new MemoryDataStore(); 
+            IDataStore store = new IntMemoryDataStore();
 
             string? value = store.Read("key_does_not_exist");
-            Assert.Null(value);
+            Assert.Equal("", value);
         }
 
         /// <summary>
