@@ -100,4 +100,23 @@ public abstract class DataStoreContractTests<TStore> where TStore : IDataStore
             Assert.Equal(value, retrievedValue);
         }
     }
+
+    /// <summary>
+    /// Tests that saving the same key multiple times with different values retrieves the most recently saved value.
+    /// </summary>
+    [Fact]
+    public void RepeatedSaves()
+    {
+        IDataStore store = CreateStore();
+
+        string key = "repeated_key";
+
+        for (int i = 0; i < 10; i++)
+        {
+            string value = $"value_{i}";
+            store.Save(key, value);
+            string? retrievedValue = store.Read(key);
+            Assert.Equal(value, retrievedValue);
+        }
+    }
 }
