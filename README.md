@@ -113,6 +113,14 @@ classDiagram
         +Read(string key) string?
     }
 
+    class FileDataStore {
+        -string _tempDir
+        -ValidateKey(string key) string
+        -SanitizeFileName(string key) string
+        +Save(string key, string value) void
+        +Read(string key) string?
+    }
+
     class MemoryDataStoreHistory {
         -Dictionary _data
         +Revert(string key) void
@@ -125,6 +133,7 @@ classDiagram
     %% Relationships
     IDataStore <|-- IDataStoreHistory
     IDataStore <|.. MemoryDataStore
+    IDataStore <|.. FileDataStore
     IDataStoreHistory <|.. MemoryDataStoreHistory
     MemoryDataStore <|-- MemoryDataStoreHistory
     MemoryDataStore <|-- IntMemoryDataStore
@@ -165,6 +174,11 @@ subtype of the latter.
 
 Implements `IDataStore`, where the association is stored in memory.
 
+### `FileDataStore`
+
+Implements `IDataStore`, where the association is stored in a temporary
+file, with the value stored inside the file.
+
 ### `MemoryDataStoreHistory`
 
 Implements `IDataStoreHistory` by extending `MemoryDataStore`.
@@ -179,6 +193,18 @@ It also violates the post-condition for `Read` by returning the empty string
 
 `IntMemoryDataStore` is a syntactic but not behavioural subtype of
 `MemoryDataStore`.
+
+## Limitations
+
+`FileDataStore` stores key-value pairs by creating a temporary file
+using the key and a unique filename, and storing the value inside the
+file. Since there are some ASCII characters like `<` which can not be
+part of a valid filename, the store replaces them with `_`. This introduces
+collisions between keys such as `key<` and `key>`. Strictly speaking,
+this strengthens the precondition on keys for `IDataStore`, breaking the
+behavioural subtype relation. We can mitigate this by only
+allowing alphanumeric characters `[a-zA-Z0-9] for the keys of the data
+stores.
 
 # Build
 
