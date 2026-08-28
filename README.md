@@ -108,13 +108,14 @@ classDiagram
     }
 
     class MemoryDataStore {
-        -Dictionary(string, string) _data
+        -Dictionary _data
         +Save(string key, string) void
         +Read(string key) string?
     }
 
     class MemoryDataStoreHistory {
-        -Dictionary(string, Stack (string)) _data
+        -Dictionary _data
+        +Revert(string key) void
     }
 
     class IntMemoryDataStore {
