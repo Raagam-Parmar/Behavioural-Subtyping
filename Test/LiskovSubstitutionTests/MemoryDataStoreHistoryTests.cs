@@ -9,6 +9,17 @@ namespace Test.LiskovSubstitutionTests
             return new MemoryDataStoreHistory();
         }
 
+
+        /// <summary>
+        /// Tests that the Revert method throws an ArgumentException when called with an empty key.
+        /// </summary>
+        [Fact]
+        public void RevertEmptyKeyThrows()
+        {
+            MemoryDataStoreHistory store = CreateStore();
+            Assert.Throws<ArgumentException>(() => store.Revert(""));
+        }
+
         /// <summary>
         /// Tests the Revert method of the MemoryDataStoreHistory class.
         /// </summary>

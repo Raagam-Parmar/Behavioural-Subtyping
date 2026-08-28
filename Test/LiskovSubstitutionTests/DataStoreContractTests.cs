@@ -46,6 +46,27 @@ public abstract class DataStoreContractTests<TStore> where TStore : IDataStore
         Assert.Null(value);
     }
 
+    /// <summary>
+    /// Tests that the Save method throws an ArgumentException when attempting to save a value with an empty key.
+    /// </summary>
+    [Fact]
+    public void SavingEmptyKeyThrows()
+    {
+        IDataStore store = CreateStore();
+
+        Assert.Throws<ArgumentException>(() => store.Save("", "value"));
+    }
+
+    /// <summary>
+    /// Tests that the Read method throws an ArgumentException when attempting to read a value with an empty key.
+    /// </summary>
+    [Fact]
+    public void ReadingEmptyKeyThrows()
+    {
+        IDataStore store = CreateStore();
+        Assert.Throws<ArgumentException>(() => store.Read(""));
+    }
+
     // Source - https://stackoverflow.com/a/1344242
     // Posted by dtb, modified by community. See post 'Timeline' for change history
     // Retrieved 2026-08-28, License - CC BY-SA 4.0
@@ -71,8 +92,8 @@ public abstract class DataStoreContractTests<TStore> where TStore : IDataStore
 
         for (int i = 0; i < 100; i++)
         {
-            string key = RandomString(random.Next(0, 100));
-            string value = RandomString(random.Next(0, 100));
+            string key = RandomString(random.Next(1, 100));
+            string value = RandomString(random.Next(1, 100));
 
             store.Save(key, value);
             string? retrievedValue = store.Read(key);
