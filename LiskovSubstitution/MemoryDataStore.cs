@@ -1,6 +1,6 @@
 ﻿namespace LiskovSubstitution
 {
-    public sealed class MemoryDataStore : IDataStore
+    public class MemoryDataStore : IDataStore
     {
         /// <summary>
         /// A dictionary to hold the key-value pairs in memory.
@@ -8,13 +8,13 @@
         private readonly Dictionary<string, string> _data = [];
         
         /// <inheritdoc/>
-        public void Save(string key, string value)
+        public virtual void Save(string key, string value)
         {
             _data[key] = value;
         }
 
         /// <inheritdoc/>
-        public string? Read(string key)
+        public virtual string? Read(string key)
         {
             return _data.TryGetValue(key, out var value) ? value : null;
         }
