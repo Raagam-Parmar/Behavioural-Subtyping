@@ -13,6 +13,7 @@ public interface IDataStore
 {
     /// <summary>
     /// Saves a key-value pair to the data store. If the key already exists, it remembers the new value.
+    /// Throws an exception if the key is the empty string.
     /// </summary>
     /// <param name="key">The key for the data to save.</param>
     /// <param name="value">The value for the data to save.</param>
@@ -20,6 +21,7 @@ public interface IDataStore
 
     /// <summary>
     /// Reads the value associated with the specified key from the data store. If the key does not exist, it returns null.
+    /// Throws an exception if the key is the empty string.
     /// </summary>
     /// <param name="key">The key for the data to read.</param>
     /// <returns>The value associated with the key, or null if the key does not exist.</returns>
