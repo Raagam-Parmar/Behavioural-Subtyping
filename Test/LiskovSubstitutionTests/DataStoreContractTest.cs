@@ -1,4 +1,5 @@
 ﻿using LiskovSubstitution;
+using System.Text;
 
 public abstract class DataStoreContractTests<TStore> where TStore : IDataStore
 {
@@ -45,5 +46,37 @@ public abstract class DataStoreContractTests<TStore> where TStore : IDataStore
         Assert.Null(value);
     }
 
-    // TODO Add randomized tests
+    // Source - https://stackoverflow.com/a/1344242
+    // Posted by dtb, modified by community. See post 'Timeline' for change history
+    // Retrieved 2026-08-28, License - CC BY-SA 4.0
+    private static Random random = new Random();
+    //
+    public static string RandomString(int length)
+    {
+        // All printable ASCII characters from space (32) to tilde (126)
+        string chars = new string(Enumerable.Range(32, 126).Select(i => (char)i).ToArray());
+
+        return new string(Enumerable.Repeat(chars, length)
+            .Select(s => s[random.Next(s.Length)]).ToArray());
+    }
+
+    /// <summary>
+    /// Performs randomized tests to ensure the classes implementing IDataStore can handle arbitrary ASCII strings as keys and values.
+    /// </summary>
+    [Fact]
+    public void RandomizedTests()
+    {
+        IDataStore store = CreateStore();
+        Random random = new Random();
+
+        for (int i = 0; i < 100; i++)
+        {
+            string key = RandomString(random.Next(0, 100));
+            string value = RandomString(random.Next(0, 100));
+
+            store.Save(key, value);
+            string? retrievedValue = store.Read(key);
+            Assert.Equal(value, retrievedValue);
+        }
+    }
 }
