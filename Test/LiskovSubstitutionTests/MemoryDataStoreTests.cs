@@ -8,7 +8,7 @@ namespace Test.LiskovSubstitutionTests
         /// Tests that the Read method returns the correct value after saving a key-value pair in the MemoryDataStore.
         /// </summary>
         [Fact]
-        public void ReadAfterSaveIsCorrect_01()
+        public void ReadAfterSaveIsCorrect()
         {
             IDataStore store = new MemoryDataStore();
 
@@ -23,7 +23,7 @@ namespace Test.LiskovSubstitutionTests
         /// Tests that the Read method returns null when attempting to read a key that has not been saved in the MemoryDataStore.
         /// </summary>
         [Fact]
-        public void ReadBeforeSaveIsNull_01()
+        public void ReadBeforeSaveIsNull()
         {
             IDataStore store = new MemoryDataStore(); 
 
