@@ -20,7 +20,7 @@
         /// <inheritdoc/>
         public string? Read(string key)
         {
-            return _data.TryGetValue(key, out var value) ? value.Last() : null;
+            return _data.TryGetValue(key, out var value) ? value.Peek() : null;
         }
 
         /// <inheritdoc/>
