@@ -31,5 +31,22 @@ namespace Test.LiskovSubstitutionTests
 
             Assert.Null(value);
         }
+
+        /// <summary>
+        /// Tests that the MemoryDataStore can save and read multiple key-value pairs correctly, including sequences of keys.
+        /// </summary>
+        [Fact]
+        public void SaveSequence()
+        {
+            IDataStore store = new MemoryDataStore();
+
+            store.Save("e1", "τ1");
+            store.Save("e2", "τ1 -> τ2");
+            store.Save("e2 e1", "τ2");
+
+            Assert.Equal("τ1", store.Read("e1"));
+            Assert.Equal("τ1 -> τ2", store.Read("e2"));
+            Assert.Equal("τ2", store.Read("e2 e1"));
+        }
     }
 }
