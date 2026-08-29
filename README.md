@@ -227,30 +227,26 @@ stores.
 
 Uses on .NET 8.0
 
+While inside the solution root, execute the following commands:
+
 1. Restore dependencies
 
     ```powershell
-    dotnet restore Assignment01.slnx
+    dotnet restore
     ```
 
 2. Build project
 
     ```powershell
-    dotnet build Assignment01.slnx --no-restore --configuration Release
+    dotnet build
     ```
 
-3. Run tests
+3. Run tests and get code coverage
 
     ```powershell
-    dotnet test Assignment01.slnx --no-build --configuration Release --verbosity normal
+    dotnet test --collect:"XPlat Code Coverage"
     ```
 
-4. Get code coverage
-   
-    ```powershell
-    dotnet test --configuration Release --collect:"XPlat Code Coverage"
-    ```
-
-5.  Use Visual Studio extensions like
+4.  Use Visual Studio extensions like
     [Fine Code Coverage](https://marketplace.visualstudio.com/items?itemName=FortuneNgwenya.FineCodeCoverage2022)
     to generate a pretty code coverage report.
