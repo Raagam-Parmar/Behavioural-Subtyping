@@ -1,5 +1,8 @@
-﻿using LiskovSubstitution;
-using System.Text;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+using LiskovSubstitution;
 
 public abstract class DataStoreContractTests<TStore> where TStore : IDataStore
 {
@@ -70,15 +73,19 @@ public abstract class DataStoreContractTests<TStore> where TStore : IDataStore
     // Source - https://stackoverflow.com/a/1344242
     // Posted by dtb, modified by community. See post 'Timeline' for change history
     // Retrieved 2026-08-28, License - CC BY-SA 4.0
-    private static Random random = new Random();
+    private static readonly Random s_random = new();
+
+    protected DataStoreContractTests()
+    {
+    }
+
     //
     public static string RandomString(int length)
     {
         // All printable ASCII characters from space (32) to tilde (126)
-        string chars = new string(Enumerable.Range(32, 126).Select(i => (char)i).ToArray());
+        string chars = new([.. Enumerable.Range(32, 126).Select(i => (char)i)]);
 
-        return new string(Enumerable.Repeat(chars, length)
-            .Select(s => s[random.Next(s.Length)]).ToArray());
+        return new string([.. Enumerable.Repeat(chars, length).Select(s => s[s_random.Next(s.Length)])]);
     }
 
     /// <summary>

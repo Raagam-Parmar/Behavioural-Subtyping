@@ -1,4 +1,8 @@
-﻿namespace LiskovSubstitution;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+namespace LiskovSubstitution;
 
 public class IntMemoryDataStore : MemoryDataStore, IDataStore
 {
@@ -8,7 +12,7 @@ public class IntMemoryDataStore : MemoryDataStore, IDataStore
     /// <param name="data">The input data to sanitize.</param>
     /// <returns>The sanitized integer as a string.</returns>
     /// <exception cref="ArgumentException">Thrown when the input data is not a valid integer.</exception>
-    private string Sanitize(string data)
+    private static string Sanitize(string data)
     {
         bool parseSuccess = int.TryParse(data, out int value);
 

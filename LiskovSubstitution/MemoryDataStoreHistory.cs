@@ -1,4 +1,8 @@
-﻿namespace LiskovSubstitution;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+namespace LiskovSubstitution;
 
 public sealed class MemoryDataStoreHistory : IDataStoreHistory
 {
@@ -12,7 +16,7 @@ public sealed class MemoryDataStoreHistory : IDataStoreHistory
     /// </summary>
     /// <param name="key">The key to validate.</param>
     /// <exception cref="ArgumentException">If the key is null or empty.</exception>
-    private void ValidateKey(string key)
+    private static void ValidateKey(string key)
     {
         if (string.IsNullOrEmpty(key))
         {
@@ -24,11 +28,13 @@ public sealed class MemoryDataStoreHistory : IDataStoreHistory
     public void Save(string key, string value)
     {
         ValidateKey(key);
-        if (!_data.ContainsKey(key))
+        if (!_data.TryGetValue(key, out Stack<string>? value1))
         {
-            _data[key] = new Stack<string>();
+            value1 = new Stack<string>();
+            _data[key] = value1;
         }
-        _data[key].Push(value);
+
+        value1.Push(value);
     }
 
     /// <inheritdoc/>
@@ -42,11 +48,11 @@ public sealed class MemoryDataStoreHistory : IDataStoreHistory
     public void Revert(string key)
     {
         ValidateKey(key);
-        if (_data.ContainsKey(key) && _data[key].Count > 1)
+        if (_data.TryGetValue(key, out Stack<string>? value) && value.Count > 1)
         {
-            _data[key].Pop();
+            value.Pop();
         }
-        else if (_data.ContainsKey(key) && _data[key].Count == 1)
+        else if (_data.TryGetValue(key, out Stack<string>? value1) && value1.Count == 1)
         {
             _data.Remove(key);
         }

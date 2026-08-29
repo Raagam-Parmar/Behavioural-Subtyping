@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 namespace LiskovSubstitution;
 
@@ -16,7 +18,7 @@ public class FileDataStore : IDataStore
     /// </summary>
     /// <param name="key">The key to validate.</param>
     /// <exception cref="ArgumentException">If the key is null or empty.</exception>
-    private void ValidateKey(string key)
+    private static void ValidateKey(string key)
     {
         if (string.IsNullOrEmpty(key))
         {
@@ -29,7 +31,7 @@ public class FileDataStore : IDataStore
     /// </summary>
     /// <param name="key">The key to sanitize.</param>
     /// <returns>The sanitized file name.</returns>
-    private string SanitizeFileName(string key)
+    private static string SanitizeFileName(string key)
     {
         foreach (char c in System.IO.Path.GetInvalidFileNameChars())
         {
