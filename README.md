@@ -1,5 +1,22 @@
 [![Build and test](https://github.com/Raagam-Parmar/Assignment01/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/Raagam-Parmar/Assignment01/actions/workflows/build.yaml)
 
+[![Line Coverage](https://raagam-parmar.github.io/Behavioural-Subtyping/badge_combined.svg)](https://raagam-parmar.github.io/Behavioural-Subtyping/)
+
+<details>
+<summary><b>View Detailed Coverage Breakdown</b></summary>
+<br>
+
+- Branch Coverage ![Branch Coverage](https://raagam-parmar.github.io/Behavioural-Subtyping/badge_branchcoverage.svg)
+
+- Method Coverage ![Method Coverage](https://raagam-parmar.github.io/Behavioural-Subtyping/badge_methodcoverage.svg)
+
+- Full Method Coverage ![Full Method Coverage](https://raagam-parmar.github.io/Behavioural-Subtyping/badge_fullmethodcoverage.svg)
+
+- [HTML Coverage Dashboard](https://raagam-parmar.github.io/Behavioural-Subtyping/)
+
+</details>
+<br>
+
 # Object Oriented Design Patterns
 
 ## What is a design pattern?
