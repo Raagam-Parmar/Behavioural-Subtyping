@@ -1,3 +1,5 @@
+![Coverage](https://img.shields.io/endpoint?url=https://Raagam-Parmar.github.io/<repo>/shields.json)
+
 name: Build and test
 
 permissions:
@@ -45,7 +47,7 @@ jobs:
       with:
         reports: '**/TestResults/**/coverage.cobertura.xml'
         targetdir: 'coveragereport'
-        reporttypes: 'MarkdownSummaryGithub;Html;Badges;Shields'
+        reporttypes: 'MarkdownSummaryGithub;Html;Badges'
 
     - name: Publish Coverage to Job Summary
       run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
