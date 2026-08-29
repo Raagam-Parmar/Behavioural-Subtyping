@@ -45,7 +45,7 @@ jobs:
       with:
         reports: '**/TestResults/**/coverage.cobertura.xml'
         targetdir: 'coveragereport'
-        reporttypes: 'MarkdownSummaryGithub;Html'
+        reporttypes: 'MarkdownSummaryGithub;Html;Badges;Shields'
 
     - name: Publish Coverage to Job Summary
       run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
