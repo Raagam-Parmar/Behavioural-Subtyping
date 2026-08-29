@@ -47,7 +47,7 @@ implementing methods $Add$ and $Remove$. Let $Stack$ and $Queue$ be classes
 which also implement the same methods. Hence, $Stack$ and $Queue$ are
 _syntactic subtypes_ of $Bag$. Note that the converse may not hold, for
 $Stack$ and $Queue$ may implement additional methods like $Peek$ and
-$Length`.
+$Length$.
 
 However, this relation is too weak in practice, for if $Stack$ and $Queue$
 implement the same methods, it allows one to be called a subtype of the
@@ -56,7 +56,7 @@ expected and vice-versa. It fails to take into account the
 _behavioural difference_ between a $Stack$ and a $Queue$.
 
 Barbara Liskov introduced the concept of _behavioural subtyping_ in her
-paper, **A Behavioural Notion of Subtyping**.
+paper, [**A Behavioural Notion of Subtyping**](https://doi.org/10.1145/197320.197383).
 
 To specify a subtype relation between classes, a specification of client
 expectations must be provided. The subtyping relation is with respect to
