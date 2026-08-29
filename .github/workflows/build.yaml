@@ -20,16 +20,16 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore Assignment01.slnx
+      run: dotnet restore
 
     - name: Build Solution
-      run: dotnet build Assignment01.slnx --no-restore --configuration Release
+      run: dotnet build
 
     - name: Run Tests
-      run: dotnet test Assignment01.slnx --no-build --configuration Release --verbosity normal
+      run: dotnet test
 
     - name: Test and Collect Coverage
-      run: dotnet test --configuration Release --collect:"XPlat Code Coverage"
+      run: dotnet test --collect:"XPlat Code Coverage"
 
     - name: Generate Coverage Report
       uses: danielpalme/ReportGenerator-GitHub-Action@5.5.11
@@ -40,3 +40,4 @@ jobs:
 
     - name: Publish Coverage to Job Summary
       run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+
