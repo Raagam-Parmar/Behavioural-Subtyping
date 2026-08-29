@@ -234,8 +234,8 @@ part of a valid filename, the store replaces them with `_`. This introduces
 collisions between keys such as `key<` and `key>`. Strictly speaking,
 this strengthens the precondition on keys for `IDataStore`, breaking the
 behavioural subtype relation. We can mitigate this by only
-allowing alphanumeric characters `[a-zA-Z0-9] for the keys of the data
-stores.
+allowing alphanumeric characters for the keys of the data stores
+(`[a-zA-Z0-9]+`).
 
 # Build
 
