@@ -1,5 +1,14 @@
 name: Build and test
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 on:
   push:
     branches: [ "main" ]
@@ -25,8 +34,11 @@ jobs:
     - name: Build Solution
       run: dotnet build
 
-    - name: Test and Collect Coverage
-      run: dotnet test --collect:"XPlat Code Coverage"
+    - name: Run tests with code coverage
+            run: >
+              dotnet test 
+              --collect:"XPlat Code Coverage" 
+              --results-directory ./TestResults
 
     - name: Generate Coverage Report
       uses: danielpalme/ReportGenerator-GitHub-Action@5.5.11
@@ -37,4 +49,17 @@ jobs:
 
     - name: Publish Coverage to Job Summary
       run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+
+    - name: Upload Pages Artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: coveragereport
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+    
 
