@@ -4,6 +4,9 @@
 
 namespace LiskovSubstitution;
 
+/// <summary>
+/// A data store implementation that saves key-value pairs to files in a temporary directory.
+/// </summary>
 public class FileDataStore : IDataStore
 {
     private readonly string _tempDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());

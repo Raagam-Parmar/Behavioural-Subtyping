@@ -4,6 +4,10 @@
 
 namespace LiskovSubstitution;
 
+/// <summary>
+/// A simple in-memory data store that implements the IDataStore interface.
+/// It allows saving and reading key-value pairs in memory.
+/// </summary>
 public class MemoryDataStore : IDataStore
 {
     /// <summary>

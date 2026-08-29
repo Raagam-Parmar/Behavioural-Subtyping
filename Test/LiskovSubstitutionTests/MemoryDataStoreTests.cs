@@ -6,6 +6,10 @@ using LiskovSubstitution;
 
 namespace Test.LiskovSubstitutionTests;
 
+/// <summary>
+/// Tests for the MemoryDataStore class.
+/// </summary>
+
 public class MemoryDataStoreTests : DataStoreContractTests<MemoryDataStore>
 {
     protected override MemoryDataStore CreateStore()

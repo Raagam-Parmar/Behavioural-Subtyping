@@ -4,6 +4,9 @@
 
 namespace LiskovSubstitution;
 
+/// <summary>
+/// A simple in-memory data store that implements the IDataStoreHistory interface.
+/// </summary>
 public sealed class MemoryDataStoreHistory : IDataStoreHistory
 {
     /// <summary>

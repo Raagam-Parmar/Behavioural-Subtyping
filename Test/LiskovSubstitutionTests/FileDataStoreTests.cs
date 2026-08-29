@@ -6,6 +6,9 @@ using LiskovSubstitution;
 
 namespace Test.LiskovSubstitutionTests;
 
+/// <summary>
+/// Tests for the FileDataStore class.
+/// </summary>
 public class FileDataStoreTests : DataStoreContractTests<FileDataStore>
 {
     protected override FileDataStore CreateStore()

@@ -6,6 +6,10 @@ using LiskovSubstitution;
 
 namespace Test.LiskovSubstitutionTests;
 
+/// <summary>
+/// Tests for the IntMemoryDataStore class.
+/// </summary>
+
 public class IntMemoryDataStoreTests
 {
     /// <summary>

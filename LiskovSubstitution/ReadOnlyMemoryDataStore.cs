@@ -4,6 +4,10 @@
 
 namespace LiskovSubstitution;
 
+/// <summary>
+/// A read-only in-memory data store that inherits from MemoryDataStore and implements the IDataStore interface.
+/// It is a counterexample to the Liskov Substitution Principle. See README for more details.
+/// </summary>
 public class ReadOnlyMemoryDataStore : MemoryDataStore, IDataStore
 {
     /// <summary>

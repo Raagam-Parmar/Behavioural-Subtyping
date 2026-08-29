@@ -4,6 +4,10 @@
 
 using LiskovSubstitution;
 
+/// <summary>
+/// An abstract base class for contract tests of any IDataStore implementation.
+/// </summary>
+/// <typeparam name="TStore">The type of the data store to test.</typeparam>
 public abstract class DataStoreContractTests<TStore> where TStore : IDataStore
 {
     protected abstract TStore CreateStore();

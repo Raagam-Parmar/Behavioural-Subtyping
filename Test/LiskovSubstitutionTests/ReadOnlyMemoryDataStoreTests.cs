@@ -6,6 +6,10 @@ using LiskovSubstitution;
 
 namespace Test.LiskovSubstitutionTests;
 
+/// <summary>
+/// Tests for the ReadOnlyMemoryDataStore class.
+/// </summary>
+
 public class ReadOnlyMemoryDataStoreTests
 {
     /// <summary>

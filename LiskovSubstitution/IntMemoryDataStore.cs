@@ -4,6 +4,10 @@
 
 namespace LiskovSubstitution;
 
+/// <summary>
+/// A data store that only accepts integer values. It extends the MemoryDataStore class and implements the IDataStore interface.
+/// It is a counterexample to the Liskov Substitution Principle. See README for more details.
+/// </summary>
 public class IntMemoryDataStore : MemoryDataStore, IDataStore
 {
     /// <summary>
