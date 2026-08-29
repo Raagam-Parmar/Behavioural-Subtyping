@@ -96,34 +96,39 @@ error behaviour; run shared contract tests against every provider.
 
 ```mermaid
 classDiagram
+    class DataStoreKey {
+        <<record>>
+        +string Key
+        +DataStoreKey(string key)
+    }
+
     class IDataStore {
         <<interface>>
-        +Save(string key, string value) void
-        +Read(string key) string?
+        +Save(DataStoreKey key, string value) void
+        +Read(DataStoreKey key) string?
     }
 
     class IDataStoreHistory {
         <<interface>>
-        +Revert(string key) void
+        +Revert(DataStoreKey key) void
     }
 
     class MemoryDataStore {
         -Dictionary _data
-        +Save(string key, string) void
-        +Read(string key) string?
+        +Save(DataStoreKey key, string) void
+        +Read(DataStoreKey key) string?
     }
 
     class FileDataStore {
         -string _tempDir
-        -ValidateKey(string key) string
         -SanitizeFileName(string key) string
-        +Save(string key, string value) void
-        +Read(string key) string?
+        +Save(DataStoreKey key, string value) void
+        +Read(DataStoreKey key) string?
     }
 
     class MemoryDataStoreHistory {
         -Dictionary _data
-        +Revert(string key) void
+        +Revert(DataStoreKey key) void
     }
 
     class IntMemoryDataStore {
@@ -131,12 +136,18 @@ classDiagram
     }
 
     %% Relationships
-    IDataStore <|-- IDataStoreHistory
-    IDataStore <|.. MemoryDataStore
-    IDataStore <|.. FileDataStore
-    IDataStoreHistory <|.. MemoryDataStoreHistory
-    MemoryDataStore <|-- MemoryDataStoreHistory
-    MemoryDataStore <|-- IntMemoryDataStore
+    IDataStore <|-- IDataStoreHistory : extends
+    IDataStore <|.. MemoryDataStore : implements
+    IDataStore <|.. FileDataStore : implements
+    IDataStoreHistory <|.. MemoryDataStoreHistory : implements
+    MemoryDataStore <|-- IntMemoryDataStore : inherits
+
+    %% Uses
+    IDataStore ..> DataStoreKey : uses
+    IDataStoreHistory ..> DataStoreKey : uses
+    MemoryDataStore ..> DataStoreKey : uses
+    MemoryDataStoreHistory ..> DataStoreKey : uses
+    IntMemoryDataStore ..> DataStoreKey : uses
 ```
 ---
 
@@ -156,6 +167,12 @@ overridden.
 
 The specified method `Read` attempts to find the value associated with the
 provided `key`. If no association is found, it returns `null`.
+
+### `DataStoreKey`
+
+Implements key validation logic (keys can not be `""` or `null`) using
+smart constructors. Throws `ArgumentException` if the conditions are
+not met.
 
 ### `IDataStoreHistory`
 
@@ -181,7 +198,7 @@ file, with the value stored inside the file.
 
 ### `MemoryDataStoreHistory`
 
-Implements `IDataStoreHistory` by extending `MemoryDataStore`.
+Implements `IDataStoreHistory`.
 
 ### `IntMemoryDataStore`
 
