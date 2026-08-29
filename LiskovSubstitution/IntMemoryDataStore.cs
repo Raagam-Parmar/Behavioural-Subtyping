@@ -29,13 +29,13 @@ public class IntMemoryDataStore : MemoryDataStore, IDataStore
     /// </summary>
     /// <param name="key">The key for the data store.</param>
     /// <param name="value">The value to save, which will be sanitized to an integer.</param>
-    public override void Save(string key, string value)
+    public override void Save(DataStoreKey key, string value)
     {
         string sanitizedValue = Sanitize(value);
         base.Save(key, sanitizedValue);
     }
 
-    public override string Read(string key)
+    public override string Read(DataStoreKey key)
     {
         string? value = base.Read(key);
 

@@ -16,5 +16,5 @@ public interface IDataStoreHistory : IDataStore
     /// Throws an exception if the key is the empty string.
     /// </summary>
     /// <param name="key">The key for the data to revert.</param>
-    void Revert(string key);
+    void Revert(DataStoreKey key);
 }
