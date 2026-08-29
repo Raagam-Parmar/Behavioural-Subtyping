@@ -17,7 +17,6 @@ public class MemoryDataStoreHistoryTests : DataStoreContractTests<MemoryDataStor
         return new MemoryDataStoreHistory();
     }
 
-
     /// <summary>
     /// Tests that the Revert method throws an ArgumentException when called with an empty key.
     /// </summary>

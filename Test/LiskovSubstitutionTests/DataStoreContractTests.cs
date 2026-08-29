@@ -78,11 +78,6 @@ public abstract class DataStoreContractTests<TStore> where TStore : IDataStore
     // Posted by dtb, modified by community. See post 'Timeline' for change history
     // Retrieved 2026-08-28, License - CC BY-SA 4.0
     private static readonly Random s_random = new();
-
-    protected DataStoreContractTests()
-    {
-    }
-
     //
     public static string RandomString(int length)
     {
