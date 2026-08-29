@@ -6,6 +6,8 @@
 <summary><b>View Detailed Coverage Breakdown</b></summary>
 <br>
 
+- Line Coverage ![Branch Coverage](https://raagam-parmar.github.io/Behavioural-Subtyping/badge_linecoverage.svg)
+
 - Branch Coverage ![Branch Coverage](https://raagam-parmar.github.io/Behavioural-Subtyping/badge_branchcoverage.svg)
 
 - Method Coverage ![Method Coverage](https://raagam-parmar.github.io/Behavioural-Subtyping/badge_methodcoverage.svg)
