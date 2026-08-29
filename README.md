@@ -135,12 +135,16 @@ classDiagram
         -Sanitize(string data) string
     }
 
+    class ReadOnlyMemoryDataStore {
+    }
+
     %% Relationships
     IDataStore <|-- IDataStoreHistory : extends
     IDataStore <|.. MemoryDataStore : implements
     IDataStore <|.. FileDataStore : implements
     IDataStoreHistory <|.. MemoryDataStoreHistory : implements
     MemoryDataStore <|-- IntMemoryDataStore : inherits
+    MemoryDataStore <|-- ReadOnlyMemoryDataStore : inherits
 
     %% Uses
     IDataStore ..> DataStoreKey : uses
@@ -148,6 +152,7 @@ classDiagram
     MemoryDataStore ..> DataStoreKey : uses
     MemoryDataStoreHistory ..> DataStoreKey : uses
     IntMemoryDataStore ..> DataStoreKey : uses
+    ReadOnlyMemoryDataStore ..> DataStoreKey : uses
 ```
 ---
 
@@ -209,6 +214,15 @@ It also violates the post-condition for `Read` by returning the empty string
 `""` instead of `null` if no association for `key` is found.
 
 `IntMemoryDataStore` is a syntactic but not behavioural subtype of
+`MemoryDataStore`.
+
+### `ReadOnlyMemoryDataStore`
+
+Demonstrates a violation of Liskov Substitution Principle. It strengthens
+the precondition that the client can call the `Save` method to save new
+key-value pairs by throwing an exception.
+
+`ReadOnlyMemoryDataStore` is a syntactic but not behavioural subtype of
 `MemoryDataStore`.
 
 ## Limitations
